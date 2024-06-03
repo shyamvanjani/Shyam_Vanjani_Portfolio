@@ -1,15 +1,16 @@
+// src/components/Certificate.jsx
+
 import { motion } from "framer-motion";
-import ContactDetails from "./ContactDetails";
-import ContactForm from "./ContactForm";
 import Section from "../Common/Section";
 import LeftSvg from "../../assets/svg/left-pattern.svg";
+import CertificateList from "./CertificateList";
 
-const Contact = () => {
+const Certificate = () => {
   return (
     <Section
-      id="contact"
-      title="Contact"
-      subtitle="Get in touch with me anytime, through social media, e-mail."
+      id="certificate"
+      title="Certificates"
+      subtitle="View my certificates here."
       className="relative"
     >
       <img
@@ -30,11 +31,10 @@ const Contact = () => {
         }}
         className="container flex justify-center flex-col lg:flex-row lg:mt-10 px-5 md:px-20 lg:space-x-4"
       >
-        <ContactDetails />
-        <ContactForm />
+        <CertificateList />
       </motion.div>
     </Section>
   );
 };
 
-export default Contact;
+export default Certificate;

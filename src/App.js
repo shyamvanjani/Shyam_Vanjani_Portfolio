@@ -8,10 +8,11 @@ import HeaderNav from "./components/Header/HeaderNav";
 import Projects from "./components/Projects/Projects";
 import { Toaster } from "react-hot-toast";
 import About from "./components/About/About";
-import Contact from "./components/Contact/ContactsPage";
+// import Contact from "./components/Contact/ContactsPage";
 import Hero from "./components/Common/Hero";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
+import Certificate from "./components/Certificates/Certificates";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -43,7 +44,7 @@ function App() {
           <About />
           <SkillsPage />
           <Projects />
-          <Contact />
+         <Certificate/>
           <AppFooter />
           <SpeedInsights />
           <Analytics />

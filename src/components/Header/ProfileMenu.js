@@ -59,14 +59,14 @@ export default function ProfileMenu() {
           </li>
           <li>
             <Link
-              to="contact"
+              to="certificate"
               smooth={true}
               offset={-40}
               duration={800}
               onClick={() => setOpen(!open)}
               className="cursor-pointer flex w-full items-center px-3 py-2 text-sm hover:bg-white dark:hover:bg-neutral-800"
             >
-              Contact
+              Certification
             </Link>
           </li>
         </ul>
