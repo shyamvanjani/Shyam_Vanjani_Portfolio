@@ -1,6 +1,6 @@
 # Personal Portfolio Website
 ## Live
-[https://shyam-vanjani-portfolio-portfolio.vercel.app](https://shyam-vanjani-portfolio-portfolio.vercel.app/)
+[https://shyam-vanjani-portfolio.vercel.app](https://shyam-vanjani-portfolio.vercel.app/)
 
 ## Tech Stack
 1) React JS
