@@ -44,9 +44,8 @@ const About = () => {
           </h4>
           <div className="bg-white dark:bg-[#101111] p-5 rounded-3xl shadow-lg shadow-gray-400/50 dark:shadow-black/30 ">
             <p className="text-base font-light">
-              Hi, I am <span className="font-semibold">Shyam Vanjani</span>{" "}
-              I am a{" "}
-              <span className="font-semibold">MERN Stack Developer</span>. I
+              Hi, I am <span className="font-semibold">Shyam Vanjani</span> I am
+              a <span className="font-semibold">MERN Stack Developer</span>. I
               am proficient in ReactJS. I am looking for new opportunities to
               implement and increase my skills in software development and web
               development.
@@ -57,15 +56,15 @@ const About = () => {
             <Reveal width="100%">Work Experience</Reveal>
           </h4>
 
-          {/* <FeaturedCard
+          <FeaturedCard
             icon={
               <div className="rounded-xl bg-amber-400 p-3.5 dark:bg-amber-400">
                 <HiOutlineBuildingOffice className="h-5 w-5 text-white" />
               </div>
             }
-            title="Feb 2024 - Current"
-            desc="Frontend Developer at Exiliensoft Consulting Services."
-          /> */}
+            title="Virtual Internship - June 2024"
+            desc="Web Development Internship at OCTANET SERVICES PVT LTD."
+          />
 
           <FeaturedCard
             icon={
@@ -73,8 +72,8 @@ const About = () => {
                 <HiOutlineBuildingOffice className="h-5 w-5 text-white" />
               </div>
             }
-            title="virtual Intership - August-2023"
-            desc="Data Analytics & Machine Learning at INFOLABZ IT SERVICES Pvt. Ltd."
+            title="Virtual Intership - August 2023"
+            desc="Data Analytics & Machine Learning at INFOLABZ IT SERVICES PVT LTD."
           />
 
           <h4 className="text-2xl font-medium text-amber-600 dark:text-amber-300">
@@ -90,13 +89,13 @@ const About = () => {
             title="August 2019 - June 2022"
             desc="Computer Engineering ( Diploma In Engineering ) from Government Polytechnic Gandhinagar."
           />
-             <FeaturedCard
+          <FeaturedCard
             icon={
               <div className="rounded-xl bg-amber-400 p-3.5 dark:bg-amber-400">
                 <FaGraduationCap className="h-5 w-5 text-white" />
               </div>
             }
-            title="2022 - 2025"
+            title="September 2022 - Current"
             desc="Computer Engineering ( Bachelor of Engineering ) from LDRP-ITR."
           />
         </motion.div>
