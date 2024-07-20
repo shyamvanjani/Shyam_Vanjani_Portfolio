@@ -42,12 +42,12 @@ const About = () => {
           <h4 className="text-2xl font-medium text-amber-600 dark:text-amber-300">
             <Reveal width="100%">Here's a Little Background.</Reveal>
           </h4>
-          <div className="bg-white dark:bg-[#101111] p-5 rounded-3xl shadow-lg shadow-gray-400/50 dark:shadow-black/30 ">
+          <div className="bg-white dark:bg-[#101111] p-5 rounded-3xl shadow-lg shadow-gray-400/50 dark:shadow-black/30">
             <p className="text-base font-light">
-              Hi, I am <span className="font-semibold">Shyam Vanjani</span> I am
-              a <span className="font-semibold">MERN Stack Developer</span>. I
-              am proficient in ReactJS. I am looking for new opportunities to
-              implement and increase my skills in software development and web
+              Hi, I am <span className="font-semibold">Shyam Vanjani</span>. I
+              am a<span className="font-semibold"> MERN Stack Developer</span>.
+              I am proficient in ReactJS and am looking for new opportunities to
+              implement and enhance my skills in software development and web
               development.
             </p>
           </div>
