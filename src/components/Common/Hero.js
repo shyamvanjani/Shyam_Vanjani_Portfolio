@@ -49,9 +49,9 @@ const Hero = () => {
         initial={animation.hide}
         animate={animation.show}
         transition={{ delay: 0.5 }}
-        className="text-sm pt-3 md:text-xl text-amber-500 font-bold z-0"
+        className="text-sm pt-3 md:text-xl text-amber-400 font-bold z-0 font-mono tracking-wider"
       >
-        MERN Stack Developer
+        Full Stack Software Engineer
       </motion.h2>
 
       <motion.div
@@ -77,7 +77,7 @@ const Hero = () => {
       <div className="mt-12">
         <a
           href="https://drive.google.com/file/d/164T9CiN_q8GGwCYIQNnUYa3HNsvwwdWC/view"
-          className="bg-gradient-to-r border-2 hover:border-transparent border-amber-500 bg-transparent transition-colors hover:from-amber-600 hover:to-amber-500 py-2 rounded-xl z-0 font-semibold tracking-[1px] hover:text-black shadow-lg shadow-gray-400/30 dark:shadow-black/30 px-4"
+          className="bg-gradient-to-r border-2 hover:border-transparent border-amber-500 bg-transparent transition-all duration-300 hover:from-amber-600 hover:to-amber-700 py-2.5 rounded-xl z-0 font-semibold tracking-[1px] hover:text-white shadow-lg shadow-amber-500/20 dark:shadow-amber-500/10 px-6 hover:shadow-amber-500/40"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -86,7 +86,7 @@ const Hero = () => {
       </div>
 
       <div className="mt-20 mb-0 down-arrow z-0">
-        <FaArrowDown className="text-amber-500 text-3xl animate-bounce " />
+        <FaArrowDown className="text-amber-400 text-3xl animate-bounce " />
       </div>
     </section>
   );

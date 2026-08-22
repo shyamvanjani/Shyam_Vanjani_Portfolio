@@ -45,7 +45,7 @@ export const Reveal = ({ children, width }) => {
           bottom: 4,
           left: 0,
           right: 0,
-          background: "#f59e0b",
+          background: "linear-gradient(90deg, #f59e0b, #d97706)",
           zIndex: 20,
           borderRadius: 10,
         }}

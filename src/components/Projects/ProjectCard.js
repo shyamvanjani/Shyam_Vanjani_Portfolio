@@ -5,9 +5,10 @@ import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { motionStep } from "./Motion";
 import { BiLinkAlt } from "react-icons/bi";
 import { FaGithub } from "react-icons/fa";
+import { HiOutlineServerStack } from "react-icons/hi2";
 //
 
-const ProjectCard = ({ live, thumbnail, code, title, description, tech }) => {
+const ProjectCard = ({ live, thumbnail, code, title, subtitle, description, tech }) => {
   return (
     <motion.div
       variants={{
@@ -32,25 +33,30 @@ const ProjectCard = ({ live, thumbnail, code, title, description, tech }) => {
         },
       }}
       {...motionStep}
-      className="col-span-12 sm:col-span-6 md:col-span-4 bg-gray-50 dark:bg-neutral-900 rounded-xl p-4 group shadow-lg shadow-gray-400/50 dark:shadow-black/30 z-20"
+      className="col-span-12 sm:col-span-6 md:col-span-4 bg-gray-50 dark:bg-[#111827] rounded-xl p-4 group shadow-lg shadow-gray-400/50 dark:shadow-black/30 z-20 border border-transparent dark:border-white/5 hover:border-cyan-500/30 dark:hover:border-cyan-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10"
     >
       <div>
-        <a href={`${live}`}>
-          <div className="h-[200px] w-full relative rounded-xl overflow-hidden">
-            <img
-              src={thumbnail}
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
-              alt="loading..."
-            />
-
-            <div className="absolute top-0 bottom-0 left-0 right-0 bg-neutral-900/50 transition-all duration-300 cursor-pointer group-hover:opacity-0" />
+        {thumbnail ? (
+          <a href={`${live || code || '#'}`}>
+            <div className="h-[200px] w-full relative rounded-xl overflow-hidden">
+              <img
+                src={thumbnail}
+                className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                alt={title}
+              />
+              <div className="absolute top-0 bottom-0 left-0 right-0 bg-neutral-900/50 transition-all duration-300 cursor-pointer group-hover:opacity-0" />
+            </div>
+          </a>
+        ) : (
+          <div className="h-[200px] w-full relative rounded-xl overflow-hidden bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 dark:from-cyan-500/20 dark:via-blue-500/20 dark:to-purple-500/20 flex items-center justify-center border border-white/5">
+            <HiOutlineServerStack className="w-16 h-16 text-cyan-400/50 group-hover:text-cyan-400/80 transition-colors duration-300" />
           </div>
-        </a>
+        )}
       </div>
 
       <div>
         <div className="flex items-center justify-between my-5">
-          <BsFillBookmarkStarFill className="text-2xl" />
+          <BsFillBookmarkStarFill className="text-2xl text-cyan-500/60" />
 
           <div
             className={
@@ -62,7 +68,7 @@ const ProjectCard = ({ live, thumbnail, code, title, description, tech }) => {
                 href={`${live}`}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-indigo-600 p-2 rounded-md dark:bg-neutral-800 bg-neutral-200 transition-all duration-300 hover:scale-110 text-2xl"
+                className="hover:text-cyan-500 p-2 rounded-md dark:bg-[#1e293b] bg-neutral-200 transition-all duration-300 hover:scale-110 text-2xl"
               >
                 <BiLinkAlt />
               </a>
@@ -73,7 +79,7 @@ const ProjectCard = ({ live, thumbnail, code, title, description, tech }) => {
                 href={`${code}`}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-indigo-600 p-2 rounded-md dark:bg-neutral-800 bg-neutral-200 transition-all duration-300 hover:scale-90 text-2xl"
+                className="hover:text-cyan-500 p-2 rounded-md dark:bg-[#1e293b] bg-neutral-200 transition-all duration-300 hover:scale-90 text-2xl"
               >
                 <FaGithub />
               </a>
@@ -82,15 +88,18 @@ const ProjectCard = ({ live, thumbnail, code, title, description, tech }) => {
         </div>
 
         <h1 className="text-xl font-medium mb-1"> {title} </h1>
+        {subtitle && (
+          <p className="text-xs font-mono text-cyan-500 dark:text-cyan-400 mb-2">{subtitle}</p>
+        )}
         <p className="dark:text-neutral-200 text-neutral-600 text-sm">
           {" "}
           {description}{" "}
         </p>
 
-        <div className="flex justify-center dark:text-neutral-300 text-neutral-700 mt-7 gap-x-4 flex-wrap">
+        <div className="flex justify-center dark:text-neutral-300 text-neutral-700 mt-7 gap-2 flex-wrap">
           {tech.map((e, i) => (
             <span
-              className="p-2 rounded-md dark:bg-neutral-800 bg-neutral-200 text-xs"
+              className="px-2 py-1 rounded-md dark:bg-[#1e293b] bg-neutral-200 text-xs border border-transparent dark:border-white/5 hover:border-cyan-500/30 transition-colors"
               key={i}
             >
               {e}

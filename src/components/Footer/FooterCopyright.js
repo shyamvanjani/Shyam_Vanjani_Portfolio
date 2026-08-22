@@ -6,7 +6,7 @@ function AppFooterCopyright() {
         <a
           href="https://github.com/shyamvanjani"
           target="__blank"
-          className="text-secondary-dark dark:text-secondary-light font-medium uppercase hover:underline hover:text-indigo-600 dark:hover:text-indigo-300 ml-1 duration-500"
+          className="text-secondary-dark dark:text-secondary-light font-medium uppercase hover:underline hover:text-amber-500 dark:hover:text-amber-300 ml-1 duration-500"
         >
          SHYAM VANJANI
         </a>

@@ -10,7 +10,7 @@ const SkillsDescription = () => {
         transition={{ duration: 1 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        className="font-medium text-2xl text-amber-500 dark:text-amber-200 mt-5 mb-5"
+        className="font-medium text-2xl text-amber-500 dark:text-amber-300 mt-5 mb-5"
       >
         <Reveal width="100%">
           A look at all the programming languages, libraries, and tools I've
@@ -24,9 +24,10 @@ const SkillsDescription = () => {
         viewport={{ once: true }}
         className="text-sm font-light"
       >
-        In the expansive field of web development, I've acquired diverse
-        experience in &nbsp;
-        <span className="font-semibold">Front-End Web Development</span>
+        With a strong foundation in both backend and frontend engineering, I've
+        built production-grade systems spanning &nbsp;
+        <span className="font-semibold">Enterprise Java Backend Development</span> and{" "}
+        <span className="font-semibold">Modern Frontend Development</span>.
       </motion.p>
 
       <motion.h2
@@ -34,9 +35,9 @@ const SkillsDescription = () => {
         transition={{ duration: 1 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        className="font-medium text-lg text-amber-500 dark:text-amber-200 mt-5"
+        className="font-medium text-lg text-amber-500 dark:text-amber-300 mt-5"
       >
-        <Reveal width="100%">Front-End</Reveal>
+        <Reveal width="100%">Backend — Spring Boot & Microservices</Reveal>
       </motion.h2>
       <motion.p
         initial={{ x: 50, opacity: 0 }}
@@ -45,8 +46,9 @@ const SkillsDescription = () => {
         viewport={{ once: true }}
         className="text-sm font-light"
       >
-        I love creating something that is clean and minimalistic, attractive and
-        has value, and of course, easy to use.
+        My primary expertise lies in building enterprise-grade microservices with
+        Java and Spring Boot. I design scalable REST APIs with Spring Security,
+        Keycloak, JWT authentication, and RBAC authorization patterns.
       </motion.p>
 
       <div className="flex">
@@ -58,7 +60,27 @@ const SkillsDescription = () => {
             viewport={{ once: true }}
             className="font-medium text-lg text-neutral-600 dark:text-neutral-200 mt-5"
           >
-            React
+            Spring Boot
+          </motion.h3>
+          <motion.p
+            initial={{ x: 50, opacity: 0 }}
+            transition={{ duration: 1 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-sm font-light"
+          >
+            Spring Boot is my go-to framework for building production-ready
+            backend services. I leverage it daily for microservices, REST APIs,
+            and enterprise integrations.
+          </motion.p>
+          <motion.h3
+            initial={{ x: 50, opacity: 0 }}
+            transition={{ duration: 1 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="font-medium text-lg text-neutral-600 dark:text-neutral-200 mt-5"
+          >
+            React.js
           </motion.h3>
           <motion.p
             initial={{ x: 50, opacity: 0 }}
@@ -68,7 +90,7 @@ const SkillsDescription = () => {
             className="text-sm font-light"
           >
             I really enjoy building web applications and React is my go-to
-            library.
+            library for creating dynamic, responsive user interfaces.
           </motion.p>
           <motion.h3
             initial={{ x: 50, opacity: 0 }}
@@ -77,7 +99,7 @@ const SkillsDescription = () => {
             viewport={{ once: true }}
             className="font-medium text-lg text-neutral-600 dark:text-neutral-200 mt-5"
           >
-            Next.js
+            Cloud & DevOps
           </motion.h3>
           <motion.p
             initial={{ x: 50, opacity: 0 }}
@@ -86,9 +108,9 @@ const SkillsDescription = () => {
             viewport={{ once: true }}
             className="text-sm font-light"
           >
-            Although I'm still relatively new to Next.js, I find it to be a
-            highly valuable tool with impressive capabilities. Its quality is
-            truly commendable.
+            I containerize applications with Docker, orchestrate with
+            Kubernetes, and automate CI/CD pipelines with GitHub Actions
+            for reliable, repeatable deployments.
           </motion.p>
         </div>
       </div>

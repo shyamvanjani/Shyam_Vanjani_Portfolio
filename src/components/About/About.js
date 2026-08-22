@@ -7,14 +7,13 @@ import { FaGraduationCap } from "react-icons/fa";
 import RightSvg from "../../assets/svg/right-pattern.svg";
 import { Reveal } from "../Common/Reveal";
 import BlurCircles from "../Common/BlurCircles";
-import { HiOutlineBuildingOffice } from "react-icons/hi2";
 
 const About = () => {
   return (
     <Section
       id="about"
       title="Overview"
-      subtitle="MERN Stack Developer"
+      subtitle="Full Stack Software Engineer"
       className="relative"
     >
       <img
@@ -39,50 +38,27 @@ const About = () => {
           viewport={{ once: true }}
           className="space-y-5 ml-0  xl:pt-0 xl:ml-20 md:pt-10"
         >
-          <h4 className="text-2xl font-medium text-amber-600 dark:text-amber-300">
+          <h4 className="text-2xl font-medium text-amber-500 dark:text-amber-300">
             <Reveal width="100%">Here's a Little Background.</Reveal>
           </h4>
-          <div className="bg-white dark:bg-[#101111] p-5 rounded-3xl shadow-lg shadow-gray-400/50 dark:shadow-black/30">
+          <div className="bg-white dark:bg-neutral-900 p-5 rounded-3xl shadow-lg shadow-gray-400/50 dark:shadow-black/30 border border-transparent dark:border-white/5">
             <p className="text-base font-light">
               Hi, I am <span className="font-semibold">Shyam Vanjani</span>. I
-              am a<span className="font-semibold"> MERN Stack Developer</span>.
-              I am proficient in ReactJS and am looking for new opportunities to
-              implement and enhance my skills in software development and web
-              development.
+              am a<span className="font-semibold"> Full Stack Software Engineer</span> with
+              expertise in enterprise Java backend development using Spring Boot, Kotlin, and
+              Microservices, as well as frontend development with React.js.
+              I build scalable, secure, and production-ready applications and am always
+              looking for new opportunities to grow my skills in software engineering.
             </p>
           </div>
 
-          <h4 className="text-2xl font-medium text-amber-600 dark:text-amber-300">
-            <Reveal width="100%">Work Experience</Reveal>
-          </h4>
-
-          <FeaturedCard
-            icon={
-              <div className="rounded-xl bg-amber-400 p-3.5 dark:bg-amber-400">
-                <HiOutlineBuildingOffice className="h-5 w-5 text-white" />
-              </div>
-            }
-            title="Virtual Internship - June 2024"
-            desc="Web Development Internship at OCTANET SERVICES PVT LTD."
-          />
-
-          <FeaturedCard
-            icon={
-              <div className="rounded-xl bg-amber-400 p-3.5 dark:bg-amber-400">
-                <HiOutlineBuildingOffice className="h-5 w-5 text-white" />
-              </div>
-            }
-            title="Virtual Intership - August 2023"
-            desc="Data Analytics & Machine Learning at INFOLABZ IT SERVICES PVT LTD."
-          />
-
-          <h4 className="text-2xl font-medium text-amber-600 dark:text-amber-300">
+          <h4 className="text-2xl font-medium text-amber-500 dark:text-amber-300">
             <Reveal width="100%">Education</Reveal>
           </h4>
 
           <FeaturedCard
             icon={
-              <div className="rounded-xl bg-amber-400 p-3.5 dark:bg-amber-400">
+              <div className="rounded-xl bg-amber-500 p-3.5 dark:bg-amber-600">
                 <FaGraduationCap className="h-5 w-5 text-white" />
               </div>
             }
@@ -91,7 +67,7 @@ const About = () => {
           />
           <FeaturedCard
             icon={
-              <div className="rounded-xl bg-amber-400 p-3.5 dark:bg-amber-400">
+              <div className="rounded-xl bg-amber-500 p-3.5 dark:bg-amber-600">
                 <FaGraduationCap className="h-5 w-5 text-white" />
               </div>
             }

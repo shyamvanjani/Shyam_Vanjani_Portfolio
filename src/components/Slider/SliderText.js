@@ -23,7 +23,7 @@ const Hero = () => {
       initial="initial"
       animate="animate"
     >
-      MERN Stack Developer
+      Full Stack Software Engineer
     </motion.div>
   );
 };

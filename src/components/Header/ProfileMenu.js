@@ -13,7 +13,7 @@ export default function ProfileMenu() {
       className="flex justify-center z-30 "
     >
       <div onClick={() => setOpen(!open)} className="relative">
-        <button className="flex items-center p-2 md:p-3 dark:bg-[#101111] bg-gray-100 rounded-xl">
+        <button className="flex items-center p-2 md:p-3 dark:bg-neutral-900 bg-gray-100 rounded-xl">
           <AiOutlineCaretDown className="w-4 h-4" />
         </button>
         <ul
@@ -31,6 +31,18 @@ export default function ProfileMenu() {
               className="cursor-pointer flex w-full items-center px-3 py-2 text-sm hover:bg-white dark:hover:bg-neutral-800"
             >
               Overview
+            </Link>
+          </li>
+          <li className="border-b dark:border-white/5 border-black/5">
+            <Link
+              to="experience"
+              smooth={true}
+              offset={-40}
+              duration={800}
+              onClick={() => setOpen(!open)}
+              className="cursor-pointer flex w-full items-center px-3 py-2 text-sm hover:bg-white dark:hover:bg-neutral-800"
+            >
+              Experience
             </Link>
           </li>
           <li className="border-b dark:border-white/5 border-black/5">
