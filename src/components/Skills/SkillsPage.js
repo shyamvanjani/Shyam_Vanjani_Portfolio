@@ -11,7 +11,7 @@ const SkillsPage = () => {
     <Section
       id="skills"
       title="expertise"
-      subtitle="I am proficient in performing tasks related to all of the listed skills below."
+      subtitle="A comprehensive toolkit spanning enterprise backend, frontend, databases, cloud infrastructure, and DevOps."
       className="relative"
     >
       <img

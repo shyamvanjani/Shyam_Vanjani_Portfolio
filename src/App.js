@@ -13,6 +13,7 @@ import Hero from "./components/Common/Hero";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
 import Certificate from "./components/Certificates/Certificates";
+import Experience from "./components/Experience/Experience";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -42,6 +43,7 @@ function App() {
             <Hero />
           </motion.div>
           <About />
+          <Experience />
           <SkillsPage />
           <Projects />
          <Certificate/>

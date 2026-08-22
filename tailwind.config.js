@@ -25,6 +25,7 @@ module.exports = {
         marquee: "marquee 25s linear infinite",
         marquee2: "marquee2 25s linear infinite",
         blob: "blob 7s infinite",
+        'glow-pulse': "glow-pulse 2s ease-in-out infinite alternate",
       },
       keyframes: {
         blob: {
@@ -49,8 +50,14 @@ module.exports = {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0%)" },
         },
+        'glow-pulse': {
+          "0%": { boxShadow: "0 0 5px #f59e0b, 0 0 10px #f59e0b" },
+          "100%": { boxShadow: "0 0 10px #f59e0b, 0 0 20px #f59e0b, 0 0 30px #f59e0b" },
+        },
       },
       fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
         yesteryear: ["Yesteryear", "cursive"],
       },
     },

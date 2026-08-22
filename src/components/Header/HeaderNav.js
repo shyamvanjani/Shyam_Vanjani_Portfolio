@@ -15,14 +15,14 @@ const HeaderNav = ({ darkMode, setDarkMode }) => {
       className="sm:container sm:mx-auto"
     >
       <div
-        className={`fixed inset-x-0 block sm:flex sm:justify-between sm:items-center  text-gray-900 dark:text-white top-0 z-40  md:justify-around py-3 md:py-2 bg-white/70 dark:bg-[#0d0c0e]/70  backdrop-filter backdrop-blur-lg bg-opacity-30 ease-in-out duration-700`}
+        className={`fixed inset-x-0 block sm:flex sm:justify-between sm:items-center  text-gray-900 dark:text-white top-0 z-40  md:justify-around py-3 md:py-2 bg-white/70 dark:bg-[#0d0c0e]/80  backdrop-filter backdrop-blur-lg bg-opacity-30 ease-in-out duration-700`}
       >
         <span
           id="progress-bar"
           style={{
             transform: `translateX(${completion - 100}%)`,
           }}
-          className={`absolute top-0 w-full transition-transform duration-300 h-[2px] bg-amber-500 dark:bg-amber-500 rounded-xl`}
+          className={`absolute top-0 w-full transition-transform duration-300 h-[2px] bg-amber-500 rounded-xl`}
         />
 
         <div className="flex justify-between items-center md:ml-5 px-4 sm:px-0">
@@ -49,12 +49,12 @@ const HeaderNav = ({ darkMode, setDarkMode }) => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               onClick={() => setDarkMode(!darkMode)}
               aria-label="Theme Switcher"
-              className="block sm:hidden ml-0 bg-primary-light dark:bg-ternary-dark cursor-pointer dark:bg-[#101111] bg-gray-100 p-2 md:p-3 rounded-xl duration-200 shadow-sm shadow-gray-400/30 dark:shadow-[#101111]/70 group"
+              className="block sm:hidden ml-0 bg-primary-light dark:bg-ternary-dark cursor-pointer dark:bg-neutral-900 bg-gray-100 p-2 md:p-3 rounded-xl duration-200 shadow-sm shadow-gray-400/30 dark:shadow-amber-500/10 group"
             >
               {darkMode ? (
                 <FiSun className="text-xl md:text-2xl cursor-pointer text-gray-200 group-hover:text-amber-400 duration-150" />
               ) : (
-                <FiMoon className="text-xl md:text-2xl cursor-pointer text-gray-600 group-hover:text-indigo-500 duration-150" />
+                <FiMoon className="text-xl md:text-2xl cursor-pointer text-gray-600 group-hover:text-amber-500 duration-150" />
               )}
             </motion.div>
 
@@ -73,12 +73,12 @@ const HeaderNav = ({ darkMode, setDarkMode }) => {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             onClick={() => setDarkMode(!darkMode)}
             aria-label="Theme Switcher"
-            className="ml-4 bg-primary-light dark:bg-ternary-dark cursor-pointer dark:bg-[#101111] bg-gray-100 p-2 md:p-3 rounded-xl shadow-sm shadow-gray-400/30 dark:shadow-[#101111]/70 group"
+            className="ml-4 bg-primary-light dark:bg-ternary-dark cursor-pointer dark:bg-neutral-900 bg-gray-100 p-2 md:p-3 rounded-xl shadow-sm shadow-gray-400/30 dark:shadow-amber-500/10 group"
           >
             {darkMode ? (
               <FiSun className="text-xl md:text-2xl cursor-pointer text-gray-200 group-hover:text-amber-400 duration-150" />
             ) : (
-              <FiMoon className="text-xl md:text-2xl cursor-pointer text-gray-600 group-hover:text-indigo-500 duration-150" />
+              <FiMoon className="text-xl md:text-2xl cursor-pointer text-gray-600 group-hover:text-amber-500 duration-150" />
             )}
           </motion.div>
 
