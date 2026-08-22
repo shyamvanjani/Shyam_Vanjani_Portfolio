@@ -76,7 +76,7 @@ const Hero = () => {
 
       <div className="mt-12">
         <a
-          href="https://drive.google.com/file/d/164T9CiN_q8GGwCYIQNnUYa3HNsvwwdWC/view"
+          href="https://drive.google.com/file/d/1Bv8DhOc2WjZMvs9i9mZSgRTG_Jhf18Y9/view?usp=drive_link"
           className="bg-gradient-to-r border-2 hover:border-transparent border-amber-500 bg-transparent transition-all duration-300 hover:from-amber-600 hover:to-amber-700 py-2.5 rounded-xl z-0 font-semibold tracking-[1px] hover:text-white shadow-lg shadow-amber-500/20 dark:shadow-amber-500/10 px-6 hover:shadow-amber-500/40"
           target="_blank"
           rel="noopener noreferrer"
