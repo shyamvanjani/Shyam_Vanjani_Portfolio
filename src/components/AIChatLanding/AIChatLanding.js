@@ -364,11 +364,9 @@ const AIChatLanding = ({ darkMode, setDarkMode }) => {
                   sequence={[
                     "Full Stack Software Engineer",
                     2500,
-                    "Java Backend Developer",
+                    "Enterprise Java Developer",
                     2500,
-                    "Spring Boot Architect",
-                    2500,
-                    "React.js Developer",
+                    "Microservices Developer",
                     2500,
                   ]}
                   speed={40}
