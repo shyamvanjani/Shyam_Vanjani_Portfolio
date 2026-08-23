@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import ActiveComponent from "./ActiveComponent";
 import BackgroundCircles from "./BackgroundCircles";
 import SliderText from "../Slider/SliderText";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const animation = {
   hide: { x: -32, opacity: 0 },
@@ -15,18 +15,29 @@ const animation = {
 };
 
 const Hero = () => {
-  window.addEventListener("scroll", function () {
-    const downArrow = this.document.querySelector(".down-arrow");
-
-    if (this.scrollY >= 1200) downArrow.classList.add("hide-down-arrow");
-    else downArrow.classList.remove("hide-down-arrow");
-  });
-
+  const downArrowRef = useRef(null);
   const [sliderTextLoader, setSliderTextLoader] = useState(false);
 
-  setInterval(() => {
-    setSliderTextLoader(true);
-  }, 3500);
+  // Scroll listener — mounted once, cleaned up on unmount, null-checked
+  useEffect(() => {
+    const handleScroll = () => {
+      const downArrow = downArrowRef.current;
+      if (!downArrow) return;
+      if (window.scrollY >= 1200) downArrow.classList.add("hide-down-arrow");
+      else downArrow.classList.remove("hide-down-arrow");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Slider swap — was setInterval() in the render body (new interval every render)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSliderTextLoader(true);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section
@@ -85,7 +96,8 @@ const Hero = () => {
         </a>
       </div>
 
-      <div className="mt-20 mb-0 down-arrow z-0">
+      {/* ref replaces querySelector(".down-arrow") */}
+      <div ref={downArrowRef} className="mt-20 mb-0 down-arrow z-0">
         <FaArrowDown className="text-amber-400 text-3xl animate-bounce " />
       </div>
     </section>
