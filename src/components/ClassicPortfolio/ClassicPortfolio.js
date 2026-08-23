@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import AppFooter from "../Footer/Footer";
 import SkillsPage from "../Skills/SkillsPage";
@@ -14,7 +13,6 @@ import Certificate from "../Certificates/Certificates";
 import Experience from "../Experience/Experience";
 
 const ClassicPortfolio = ({ darkMode, setDarkMode }) => {
-  const navigate = useNavigate();
 
   return (
     <main className="bg-white dark:bg-[#0d0c0e] text-gray-900 dark:text-white duration-700 ease-in-out">
