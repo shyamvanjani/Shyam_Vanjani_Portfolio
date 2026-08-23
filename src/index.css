@@ -29,6 +29,31 @@
   .glass-card {
     @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
   }
+
+  /* ─── AI Chat Landing Styles — Light + Dark ────────────── */
+  .chat-input-glass {
+    @apply backdrop-blur-xl rounded-2xl shadow-lg
+           bg-white/60 border border-gray-200 shadow-gray-200/30
+           dark:bg-white/5 dark:border-white/10 dark:shadow-amber-500/5;
+  }
+
+  .chat-bubble-ai {
+    @apply backdrop-blur-lg rounded-2xl rounded-tl-sm
+           bg-white/70 border border-gray-200
+           dark:bg-white/5 dark:border-white/10;
+  }
+
+  .chat-bubble-user {
+    @apply backdrop-blur-lg rounded-2xl rounded-tr-sm
+           bg-amber-50 border border-amber-200
+           dark:bg-amber-500/15 dark:border-amber-500/20;
+  }
+
+  .quick-action-pill {
+    @apply backdrop-blur-lg rounded-full transition-all duration-300
+           bg-white/60 border border-gray-200 hover:border-amber-400 hover:bg-amber-50
+           dark:bg-white/5 dark:border-white/10 dark:hover:border-amber-500/40 dark:hover:bg-amber-500/10;
+  }
 }
 
 @layer utilities {
@@ -49,20 +74,58 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom scrollbar for the amber theme */
+/* Custom scrollbar — theme-aware */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+.dark ::-webkit-scrollbar-track {
   background: #0d0c0e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f59e0b;
+  background: #d4a017;
   border-radius: 3px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: #f59e0b;
+}
+
 ::-webkit-scrollbar-thumb:hover {
+  background: #ca8a04;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #fbbf24;
+}
+
+/* Chat scroll area */
+.chat-scroll-area::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(202, 138, 4, 0.3);
+  border-radius: 2px;
+}
+
+.dark .chat-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.3);
+}
+
+.chat-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(202, 138, 4, 0.5);
+}
+
+.dark .chat-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.5);
 }
