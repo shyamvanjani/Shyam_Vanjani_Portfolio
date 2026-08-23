@@ -12,7 +12,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
 import Certificate from "../Certificates/Certificates";
 import Experience from "../Experience/Experience";
-import { FaArrowLeft } from "react-icons/fa6";
 
 const ClassicPortfolio = ({ darkMode, setDarkMode }) => {
   const navigate = useNavigate();
