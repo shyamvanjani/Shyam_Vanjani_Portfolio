@@ -71,7 +71,7 @@ const About = () => {
                 <FaGraduationCap className="h-5 w-5 text-white" />
               </div>
             }
-            title="September 2022 - Current"
+            title="September 2022 - May 2025"
             desc="Computer Engineering ( Bachelor of Engineering ) from LDRP-ITR."
           />
         </motion.div>
