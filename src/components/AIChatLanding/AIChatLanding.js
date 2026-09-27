@@ -16,6 +16,7 @@ import {
 import { FiSun, FiMoon } from "react-icons/fi";
 import { chatResponses } from "../../data/chatResponses";
 import useStreamText from "../../hooks/useStreamText";
+import { askGemini } from "../../services/geminiService";
 
 // ─── Quick-Action Button Data ──────────────────────────────
 const quickActions = [
@@ -24,6 +25,25 @@ const quickActions = [
   { id: "skills", label: "Skills", icon: <FaBolt /> },
   { id: "projects", label: "Projects", icon: <FaRocket /> },
   { id: "certificates", label: "Certificates", icon: <FaCertificate /> },
+];
+
+// ─── Basic Greetings & Pleasantries ────────────────────────
+const GREETING_PATTERN = /^(hi+|hello+|hey+|greetings)(?:\s+there)?[\s!.,]*$/i;
+const PLEASANTRY_PATTERN = /^(thanks+|thank you+|cool+|awesome+|ok+|okay+|nice+)[\s!.,]*$/i;
+
+const GREETING_RESPONSE =
+  "Hello! 👋 I'm Shyam's AI assistant. You can ask me about his experience, skills, projects, or certifications. How can I help you today?";
+const PLEASANTRY_RESPONSE =
+  "You're welcome! Let me know if you'd like to explore any other parts of Shyam's portfolio.";
+
+// ─── Thinking Phrases ──────────────────────────────────────
+const THINKING_PHRASES = [
+  "Thinking...",
+  "Cooking up a response...",
+  "Synthesizing...",
+  "Analyzing...",
+  "Connecting the dots...",
+  "Almost there...",
 ];
 
 const RESUME_LINK =
@@ -125,7 +145,21 @@ const buildResponse = (matchedTopics) => {
 const renderFormattedText = (text) => {
   const lines = text.split("\n");
   return lines.map((line, i) => {
-    const parts = line.split(/(\*\*[^*]+\*\*)/g);
+    let isList = false;
+    let listIcon = "";
+    let contentLine = line;
+
+    if (line.startsWith("* ") || line.startsWith("- ") || line.startsWith("• ")) {
+      isList = true;
+      listIcon = "•";
+      contentLine = line.slice(2);
+    } else if (line.startsWith("•") || line.startsWith("📜") || line.startsWith("🏆")) {
+      isList = true;
+      listIcon = line.charAt(0);
+      contentLine = line.slice(1).trimStart();
+    }
+
+    const parts = contentLine.split(/(\*\*[^*]+\*\*)/g);
     const rendered = parts.map((part, j) => {
       if (part.startsWith("**") && part.endsWith("**")) {
         return (
@@ -144,14 +178,16 @@ const renderFormattedText = (text) => {
       return <span key={j}>{part}</span>;
     });
 
-    if (line.startsWith("•") || line.startsWith("📜") || line.startsWith("🏆")) {
+    if (isList) {
       return (
-        <div key={i} className="pl-2 py-0.5">
-          {rendered}
+        <div key={i} className="pl-2 py-0.5 flex">
+          <span className="mr-2 shrink-0">{listIcon}</span>
+          <span>{rendered}</span>
         </div>
       );
     }
-    if (line.trim() === "") {
+
+    if (contentLine.trim() === "") {
       return <div key={i} className="h-2" />;
     }
     return (
@@ -175,11 +211,52 @@ const AIChatLanding = ({ darkMode, setDarkMode }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const prevIsStreaming = useRef(false);
 
+  // ─── Thinking state for Gemini API calls ───
+  const [isThinking, setIsThinking] = useState(false);
+  const [thinkingPhrase, setThinkingPhrase] = useState(THINKING_PHRASES[0]);
+  const thinkingTimeoutRef = useRef(null);
+
+  const beginThinkingThenStream = useCallback(
+    (responseText, customDelay) => {
+      setIsThinking(true);
+      setThinkingPhrase(THINKING_PHRASES[0]);
+
+      const delayMs = customDelay !== undefined ? customDelay : Math.floor(Math.random() * 1000) + 2000;
+
+      thinkingTimeoutRef.current = setTimeout(() => {
+        thinkingTimeoutRef.current = null;
+        setIsThinking(false);
+
+        const aiMsg = { type: "ai", text: "" };
+        setMessages((prev) => {
+          const newMessages = [...prev, aiMsg];
+          setActiveStreamIndex(newMessages.length - 1);
+          return newMessages;
+        });
+
+        setTimeout(() => {
+          startStreaming(responseText);
+        }, 100);
+      }, delayMs);
+    },
+    [startStreaming]
+  );
+
+  useEffect(() => {
+    if (!isThinking) return;
+    let index = 0;
+    const interval = setInterval(() => {
+      index = (index + 1) % THINKING_PHRASES.length;
+      setThinkingPhrase(THINKING_PHRASES[index]);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, [isThinking]);
+
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages, displayedText]);
+  }, [messages, displayedText, isThinking, thinkingPhrase]);
 
   useEffect(() => {
     if (activeStreamIndex >= 0 && displayedText) {
@@ -214,67 +291,122 @@ const AIChatLanding = ({ darkMode, setDarkMode }) => {
       setIsProcessing(true);
 
       const userMsg = { type: "user", text: data.question };
-      const aiMsg = { type: "ai", text: "" };
 
-      setMessages((prev) => {
-        const newMessages = [...prev, userMsg, aiMsg];
-        setActiveStreamIndex(newMessages.length - 1);
-        return newMessages;
-      });
+      setMessages((prev) => [...prev, userMsg]);
 
-      setTimeout(() => {
-        startStreaming(data.response);
-      }, 600);
+      beginThinkingThenStream(data.response);
     },
-    [chatActive, reset, startStreaming, isProcessing]
+    [chatActive, reset, isProcessing, beginThinkingThenStream]
   );
 
   const handleInputSubmit = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
       if (isProcessing) return;
       const trimmed = inputValue.trim().toLowerCase();
       if (!trimmed) return;
 
-      const matchedTopics = classifyIntents(trimmed);
-      const responseText = buildResponse(matchedTopics);
+      // ── Step 1 & 1.5: Static keyword matching & Greetings ──
+      let staticResponse = null;
+      let thinkingDelay = undefined; // undefined = random delay
 
-      if (responseText) {
+      if (GREETING_PATTERN.test(trimmed)) {
+        staticResponse = GREETING_RESPONSE;
+        thinkingDelay = 1500;
+      } else if (PLEASANTRY_PATTERN.test(trimmed)) {
+        staticResponse = PLEASANTRY_RESPONSE;
+        thinkingDelay = 1500;
+      } else {
+        const matchedTopics = classifyIntents(trimmed);
+        const baseResponse = buildResponse(matchedTopics);
+
+        if (baseResponse) {
+          const RELAXED_GREETING_PATTERN = /\b(hi+|hello|hey|greetings)\b/i;
+          if (RELAXED_GREETING_PATTERN.test(trimmed)) {
+            staticResponse = "Hello! 👋 \n\n" + baseResponse;
+          } else {
+            staticResponse = baseResponse;
+          }
+        }
+      }
+
+      if (staticResponse) {
         setInputValue("");
         if (!chatActive) setChatActive(true);
         reset();
         setIsProcessing(true);
 
         const userMsg = { type: "user", text: inputValue.trim() };
+        setMessages((prev) => [...prev, userMsg]);
+
+        beginThinkingThenStream(staticResponse, thinkingDelay);
+        return;
+      }
+
+      // ── Step 2: No static match → try Gemini API ──
+      const rawInput = inputValue.trim();
+      setInputValue("");
+      if (!chatActive) setChatActive(true);
+      reset();
+      setIsProcessing(true);
+      setIsThinking(true);
+      setThinkingPhrase(THINKING_PHRASES[0]);
+
+      const userMsg = { type: "user", text: rawInput };
+
+      setMessages((prev) => [...prev, userMsg]);
+
+      try {
+        // Pass chat history for multi-turn context
+        const geminiResponse = await askGemini(rawInput, messages);
+
+        // API succeeded → stop thinking, add AI bubble, stream the response
+        setIsThinking(false);
+
         const aiMsg = { type: "ai", text: "" };
         setMessages((prev) => {
-          const newMessages = [...prev, userMsg, aiMsg];
+          const newMessages = [...prev, aiMsg];
           setActiveStreamIndex(newMessages.length - 1);
           return newMessages;
         });
+
         setTimeout(() => {
-          startStreaming(responseText);
-        }, 600);
-      } else {
-        if (!chatActive) setChatActive(true);
-        const userMsg = { type: "user", text: inputValue.trim() };
-        const aiMsg = {
-          type: "ai",
-          text: "Hey! I can tell you about my background, experience, skills, projects, or certifications — feel free to ask about more than one at once. Try one of the buttons below, or just ask naturally.",
-        };
-        setMessages((prev) => [...prev, userMsg, aiMsg]);
-        setInputValue("");
+          startStreaming(geminiResponse);
+        }, 300);
+      } catch (err) {
+        // ── Step 3: API failed → stop thinking, fall back to static message ──
+        console.error("Chat Error:", err.message, err);
+        setIsThinking(false);
+
+        const fallbackText =
+          "Hey! I can tell you about my background, experience, skills, projects, or certifications — feel free to ask about more than one at once. Try one of the buttons below, or just ask naturally.";
+
+        const aiMsg = { type: "ai", text: "" };
+        setMessages((prev) => {
+          const newMessages = [...prev, aiMsg];
+          setActiveStreamIndex(newMessages.length - 1);
+          return newMessages;
+        });
+
+        setTimeout(() => {
+          startStreaming(fallbackText);
+        }, 300);
       }
     },
-    [inputValue, chatActive, reset, startStreaming, isProcessing]
+    [inputValue, chatActive, reset, startStreaming, isProcessing, messages, beginThinkingThenStream]
   );
 
   const handleReset = () => {
+    if (thinkingTimeoutRef.current) {
+      clearTimeout(thinkingTimeoutRef.current);
+      thinkingTimeoutRef.current = null;
+    }
     reset();
     setChatActive(false);
     setMessages([]);
     setActiveStreamIndex(-1);
     setIsProcessing(false);
+    setIsThinking(false);
   };
 
   return (
@@ -456,6 +588,37 @@ const AIChatLanding = ({ darkMode, setDarkMode }) => {
                   </div>
                 </motion.div>
               ))}
+              {/* ─── THINKING BUBBLE ─── */}
+              <AnimatePresence>
+                {isThinking && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex justify-start"
+                  >
+                    <div className="flex-shrink-0 mr-3 mt-1">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-[10px] font-bold text-[#0d0c0e]">
+                        SV
+                      </div>
+                    </div>
+                    <div className="chat-bubble-ai px-4 py-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-amber-600 dark:text-amber-400 animate-pulse">
+                          {thinkingPhrase}
+                        </span>
+                        <span className="flex gap-0.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-bounce" style={{ animationDelay: "0ms" }} />
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-bounce" style={{ animationDelay: "150ms" }} />
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-bounce" style={{ animationDelay: "300ms" }} />
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <div ref={chatEndRef} />
             </div>
           </motion.div>

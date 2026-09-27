@@ -8,18 +8,27 @@ const experienceData = [
   {
     id: 1,
     company: "Cygnet.One",
-    role: "Associate Software Engineer (Java Backend Developer)",
-    period: "July 2025 – Present",
+    role: "Software Engineer (Full Stack Developer – Java, Next.js)",
+    period: "July 2026 – Present",
     bullets: [
-      "Architect and maintain enterprise-grade backend microservices for the Nobilex platform using Spring Boot, Kotlin, and MongoDB, integrating multiple third-party services within a microservices architecture.",
-      "Engineer backend microservices for the Solumina Admin Portal using Java 21, Spring Boot, PostgreSQL, Docker, and Kubernetes, delivering scalable, secure REST APIs for user management, audit logging, monitoring, and log streaming.",
-      "Built a Kubernetes Monitoring module using the Fabric8 Kubernetes Client, and a multi-destination Log Streaming module supporting Elasticsearch, Graylog, and Splunk with Elasticsearch-powered audit log search.",
-      "Integrated Keycloak-based authentication with JWT authorization and RBAC, and drove CI/CD pipelines and production deployments using Docker, Kubernetes, Gradle, and GitHub Actions.",
-      "Partnered cross-functionally with frontend, QA, and DevOps teams to ship enterprise-grade backend features on schedule.",
+      "Promoted to Software Engineer after a year as an Associate Software Engineer, and expanded into full-stack work — building Next.js frontends alongside the existing Java backend services for the Solumina Admin Portal platform.",
     ],
   },
   {
     id: 2,
+    company: "Cygnet.One",
+    role: "Associate Software Engineer",
+    period: "July 2025 – June 2026",
+    bullets: [
+      "Architected and maintained enterprise-grade backend microservices for the Nobilex platform using Spring Boot, Kotlin, and MongoDB, integrating multiple third-party services within a microservices architecture.",
+      "Engineered backend microservices for the Solumina Admin Portal using Java 21, Spring Boot, PostgreSQL, Docker, and Kubernetes, delivering scalable, secure REST APIs for user management, audit logging, monitoring, and log streaming.",
+      "Built a Kubernetes Monitoring module using the Fabric8 Kubernetes Client, and a multi-destination Log Streaming module supporting Elasticsearch, Graylog, and Splunk with Elasticsearch-powered audit log search.",
+      "Integrated Keycloak-based authentication with JWT authorization and RBAC, and drove CI/CD pipelines and production deployments using Docker, Kubernetes, Gradle, and GitHub Actions.",
+      "Partnered cross-functionally with frontend, QA, and DevOps teams to ship enterprise-grade features on schedule.",
+    ],
+  },
+  {
+    id: 3,
     company: "Cygnet.One",
     role: "Software Engineer Trainee",
     period: "January 2025 – June 2025",
@@ -30,7 +39,7 @@ const experienceData = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     company: "OCTANET SERVICES PVT LTD",
     role: "Web Development Intern (Virtual)",
     period: "June 2024",
@@ -39,7 +48,7 @@ const experienceData = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     company: "INFOLABZ IT SERVICES PVT LTD",
     role: "Data Analytics & Machine Learning Intern (Virtual)",
     period: "August 2023",
